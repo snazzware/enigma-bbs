@@ -56,6 +56,8 @@ function userLogin(client, username, password, cb) {
 		//	update client logger with addition of username
 		client.log = logger.log.child( { clientId : client.log.fields.clientId, username : user.username });
 		client.log.info('Successful login');            
+		
+		events.emit('codes.l33t.enigma.system.user_login', {'client': client, 'user': user});
 
 		async.parallel(
 			[
